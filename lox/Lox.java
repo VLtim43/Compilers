@@ -7,7 +7,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Scanner;
 
 public class Lox {
     static boolean hadError = false;
@@ -25,7 +24,7 @@ public class Lox {
 
     private static void readFile(String path) throws IOException {
         byte[] bytes = Files.readAllBytes(Paths.get(path));
-        // run(new String(bytes, Charset.defaultCharset()));
+        run(new String(bytes, Charset.defaultCharset()));
         if (hadError)
             System.exit(65);
     }
@@ -39,17 +38,17 @@ public class Lox {
             String line = read.readLine();
             if (line == null)
                 break;
-            // run(line);
+            run(line);
         }
     }
 
-    // private static void run(String source) {
-    // Scanner scanner = new Scanner(source);
-    // List<Token> tokens = scanner.scanTokens();
-    // for (Token token : tokens) {
-    // System.out.println(token);
-    // }
-    // }
+    private static void run(String source) {
+        Scanner scanner = new Scanner(source);
+        List<Token> tokens = scanner.scanTokens();
+        for (Token token : tokens) {
+            System.out.println(token);
+        }
+    }
 
     static void error(int line, String message) {
         report(line, "", message);
