@@ -1,3 +1,7 @@
+/* First run flex word-count.l */
+/* Then compile with cc the outputed yy.c file linking it with the -lfl library */
+/* Finally you can run the .out file passing any text and after quiting it will display the lines, words and chars */
+
 %{
 int chars = 0;
 int words = 0;
@@ -6,9 +10,7 @@ int lines = 0;
 
 %%
 
-[a-zA-Z]+ { words++; chars += strlen(yytext); }
-\n { chars++; lines++; }
-. { chars++; }
+[^ \t\n\r\f\v]+  { words++; chars += strlen(yytext); }
 
 %%
 
