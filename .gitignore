@@ -1,2 +1,11 @@
 *.yy*
 *.out
+*.o
+*.d
+*.s
+
+*.cc
+*.c
+
+lexer
+mycoolc
